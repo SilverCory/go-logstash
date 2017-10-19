@@ -23,12 +23,12 @@ func New(authKey string, logger *log.Logger) (s *Server) {
 		logger:     logger,
 	}
 
-	s.logRoute = s.rootRouter.HandleFunc("/log/{path:.*}", s.handleLog).Methods("POST")
+	s.logRoute = s.rootRouter.HandleFunc("/log/{path:.*}", s.HandleLog).Methods("POST")
 	return
 
 }
 
-func (s *Server) handleLog(writer http.ResponseWriter, request *http.Request) {
+func (s *Server) HandleLog(writer http.ResponseWriter, request *http.Request) {
 
 	if request.Header.Get("auth") != s.authKey {
 		writer.WriteHeader(http.StatusForbidden)
