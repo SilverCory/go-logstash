@@ -2,10 +2,10 @@ package http
 
 import (
 	"fmt"
-	"github.com/SilverCory/go-logstash/log"
 	"github.com/gorilla/mux"
 	"io/ioutil"
 	"net/http"
+	"log"
 )
 
 type Server struct {
