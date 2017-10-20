@@ -13,6 +13,7 @@ type Server struct {
 	rootRouter *mux.Router
 	logRoute   *mux.Route
 	logger     *log.Logger
+	LogCallback func(string)
 }
 
 func New(authKey string, logger *log.Logger) (s *Server) {
