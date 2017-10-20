@@ -5,7 +5,7 @@ import (
 	"github.com/gorilla/mux"
 	"io/ioutil"
 	"net/http"
-	"log"
+	"github.com/SilverCory/go-logstash/log"
 )
 
 type Server struct {
@@ -13,7 +13,7 @@ type Server struct {
 	rootRouter *mux.Router
 	logRoute   *mux.Route
 	logger     *log.Logger
-	LogCallback func(string)
+	LogCallback func(path, data string)
 }
 
 func New(authKey string, logger *log.Logger) (s *Server) {
@@ -49,6 +49,10 @@ func (s *Server) HandleLog(writer http.ResponseWriter, request *http.Request) {
 		writer.WriteHeader(http.StatusInternalServerError)
 		writer.Write([]byte(fmt.Sprint(err)))
 		return
+	}
+
+	if s.LogCallback != nil {
+		go s.LogCallback(vars["path"], string(bytes))
 	}
 
 }
