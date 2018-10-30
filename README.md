@@ -1,6 +1,9 @@
 # go-logstash
 **Ez quick way of combining multiple log files into one, from multiple remote instances.**
 
+## CAUTION
+Be careful, there is an unresolved issue where if you use a folder as a file it may overwrite the file.
+
 ## Usage
 Run the program with the authkey flag set to a very secure password.
 
